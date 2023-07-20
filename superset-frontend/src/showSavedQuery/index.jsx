@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import ReactDom from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Form from 'react-jsonschema-form';
 import { interpolate } from 'src/showSavedQuery/utils';
 import { styled } from '@superset-ui/core';
@@ -49,7 +49,8 @@ if (scheduleInfo && config) {
   // hide instructions when showing schedule info
   config.JSONSCHEMA.description = '';
 
-  ReactDom.render(
+  const root = createRoot(scheduleInfoContainer);
+  root.render(
     <StyledSavedQueryContainer>
       <Form
         schema={config.JSONSCHEMA}
@@ -67,7 +68,6 @@ if (scheduleInfo && config) {
           </a>
         </StyledLinkBack>
       )}
-    </StyledSavedQueryContainer>,
-    scheduleInfoContainer,
+    </StyledSavedQueryContainer>
   );
 }
