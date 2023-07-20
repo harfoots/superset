@@ -21,7 +21,7 @@
 // eg, backend rendered views
 import React from 'react';
 import { Provider } from 'react-redux';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Route, BrowserRouter } from 'react-router-dom';
 import { CacheProvider } from '@emotion/react';
 import { QueryParamProvider } from 'use-query-params';
@@ -60,4 +60,6 @@ const app = (
   </CacheProvider>
 );
 
-ReactDOM.render(app, document.getElementById('app-menu'));
+const container = document.getElementById('app-menu');
+const root = createRoot(container);
+root.render(app);
