@@ -1,3 +1,4 @@
+//after
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,21 +18,27 @@
  * under the License.
  */
 import React from 'react';
-import { render, screen } from 'spec/helpers/testing-library';
+import { createRoot, screen } from 'spec/helpers/testing-library';
 import { BOOL_FALSE_DISPLAY, BOOL_TRUE_DISPLAY } from 'src/constants';
 import BooleanCell from '.';
 
 test('renders true value', async () => {
-  render(<BooleanCell value />);
+  const container = document.createElement('div');
+  const root = createRoot(container);
+  root.render(<BooleanCell value />);
   expect(screen.getByText(BOOL_TRUE_DISPLAY)).toBeInTheDocument();
 });
 
 test('renders false value', async () => {
-  render(<BooleanCell value={false} />);
+  const container = document.createElement('div');
+  const root = createRoot(container);
+  root.render(<BooleanCell value={false} />);
   expect(screen.getByText(BOOL_FALSE_DISPLAY)).toBeInTheDocument();
 });
 
 test('renders falsy value', async () => {
-  render(<BooleanCell />);
+  const container = document.createElement('div');
+  const root = createRoot(container);
+  root.render(<BooleanCell />);
   expect(screen.getByText(BOOL_FALSE_DISPLAY)).toBeInTheDocument();
 });
