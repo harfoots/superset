@@ -1,3 +1,4 @@
+//after
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,7 +19,7 @@
  */
 import React from 'react';
 import fetchMock from 'fetch-mock';
-import { render, screen } from 'spec/helpers/testing-library';
+import { createRoot } from 'react-dom/client';
 import EditDataset from './index';
 
 const DATASET_ENDPOINT = 'glob:*api/v1/dataset/1/related_objects';
@@ -30,7 +31,9 @@ const mockedProps = {
 fetchMock.get(DATASET_ENDPOINT, { charts: { results: [], count: 2 } });
 
 test('should render edit dataset view with tabs', async () => {
-  render(<EditDataset {...mockedProps} />);
+  const container = document.getElementById('app');
+  const root = createRoot(container);
+  root.render(<EditDataset {...mockedProps} />);
 
   const columnTab = await screen.findByRole('tab', { name: /columns/i });
   const metricsTab = screen.getByRole('tab', { name: /metrics/i });

@@ -1,3 +1,4 @@
+//after
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,13 +19,15 @@
  */
 
 import React from 'react';
-import { render, screen } from 'spec/helpers/testing-library';
+import { createRoot, screen } from 'spec/helpers/testing-library';
 import BuilderComponentPane from '.';
 
 jest.mock('src/dashboard/containers/SliceAdder');
 
 test('BuilderComponentPane has correct tabs in correct order', () => {
-  render(<BuilderComponentPane topOffset={115} />);
+  const container = document.createElement('div');
+  const root = createRoot(container);
+  root.render(<BuilderComponentPane topOffset={115} />);
   const tabs = screen.getAllByRole('tab');
   expect(tabs).toHaveLength(2);
   expect(tabs[0]).toHaveTextContent('Charts');

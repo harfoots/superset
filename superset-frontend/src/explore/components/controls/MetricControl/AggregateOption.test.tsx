@@ -1,3 +1,4 @@
+//after
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,13 +18,15 @@
  * under the License.
  */
 import React from 'react';
-import { render, screen } from 'spec/helpers/testing-library';
+import { createRoot, screen } from 'react-dom/client';
 
 import AggregateOption from 'src/explore/components/controls/MetricControl/AggregateOption';
 
 describe('AggregateOption', () => {
   it('renders the aggregate', () => {
-    render(<AggregateOption aggregate={{ aggregate_name: 'SUM' }} />);
+    const container = document.getElementById('app');
+    const root = createRoot(container);
+    root.render(<AggregateOption aggregate={{ aggregate_name: 'SUM' }} />);
 
     const aggregateOption = screen.getByText(/sum/i);
     expect(aggregateOption).toBeVisible();
