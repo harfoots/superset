@@ -1,3 +1,4 @@
+//after
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,7 +18,7 @@
  * under the License.
  */
 import React from 'react';
-import { render, screen } from 'spec/helpers/testing-library';
+import { createRoot, screen } from 'spec/helpers/testing-library';
 import QueryHistory from 'src/SqlLab/components/QueryHistory';
 
 const mockedProps = {
@@ -32,7 +33,9 @@ const setup = (overrides = {}) => (
 
 describe('QueryHistory', () => {
   it('Renders an empty state for query history', () => {
-    render(setup());
+    const container = document.createElement('div');
+    const root = createRoot(container);
+    root.render(setup());
 
     const emptyStateText = screen.getByText(
       /run a query to display query history/i,
