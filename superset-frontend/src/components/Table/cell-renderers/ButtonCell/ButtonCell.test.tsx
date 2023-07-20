@@ -1,3 +1,4 @@
+//after
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,7 +18,7 @@
  * under the License.
  */
 import React from 'react';
-import { render, screen } from 'spec/helpers/testing-library';
+import { createRoot, screen } from 'spec/helpers/testing-library';
 import userEvent from '@testing-library/user-event';
 import ButtonCell from './index';
 import { exampleRow } from '../fixtures';
@@ -26,7 +27,10 @@ test('renders with default props', async () => {
   const clickHandler = jest.fn();
   const BUTTON_LABEL = 'Button Label';
 
-  render(
+  const container = document.createElement('div');
+  const root = createRoot(container);
+
+  root.render(
     <ButtonCell
       label={BUTTON_LABEL}
       key={5}
