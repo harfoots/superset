@@ -1,3 +1,4 @@
+//after
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,12 +18,14 @@
  * under the License.
  */
 import React from 'react';
-import { render, screen } from 'spec/helpers/testing-library';
+import { createRoot, screen } from 'spec/helpers/testing-library';
 import RightPanel from 'src/features/datasets/AddDataset/RightPanel';
 
 describe('RightPanel', () => {
   it('renders a blank state RightPanel', () => {
-    render(<RightPanel />);
+    const container = document.getElementById('app');
+    const root = createRoot(container);
+    root.render(<RightPanel />);
 
     expect(screen.getByText(/right panel/i)).toBeVisible();
   });
